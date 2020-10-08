@@ -8,6 +8,8 @@ let towers = {
     C: []
 }
 
+let movingDisc = null
+
 function genTower() {
     for (let index = MAX_TOWER_HEIGHT; index > 0; index--) {
         towers.A.push(index * 2 + 1)
@@ -30,7 +32,7 @@ function printTowers() {
             if (disc) {
                 const padding = Math.floor((MAX_DISC_WIDTH - disc) / 2)
                 rowString += genLengthyString(" ", padding)
-                rowString += genLengthyString("*", disc)
+                rowString += genLengthyString(disc === movingDisc ? "▣" : "▢", disc)
                 rowString += genLengthyString(" ", padding)
             } else {
                 if (row == -1) {
@@ -58,8 +60,8 @@ function printTowers() {
 
 async function move(from, to) {
     console.log(`Moving 1 disc from ${from} to ${to}`)
-    const disc = towers[from].pop()
-    towers[to].push(disc)
+    movingDisc = towers[from].pop()
+    towers[to].push(movingDisc)
 }
 
 function hanoi(n, from, helper, to) {
