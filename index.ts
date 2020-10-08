@@ -73,7 +73,6 @@ function hanoi(n, from, helper, to) {
 
 }
 
-console.log('\n\nWELCOME TO TOWERS OF HANOI!\nSTARTING WITH:')
 printFullLine()
 console.log(`|      WELCOME TO TOWERS OF HANOI!    |`)
 printFullLine()
