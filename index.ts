@@ -1,4 +1,3 @@
-
 const MAX_TOWER_HEIGHT = 6
 const MAX_DISC_WIDTH = MAX_TOWER_HEIGHT * 2 + 1
 
@@ -14,6 +13,10 @@ function genTower() {
     for (let index = MAX_TOWER_HEIGHT; index > 0; index--) {
         towers.A.push(index * 2 + 1)
     }
+}
+
+function printFullLine() {
+    console.log(genLengthyString("-", MAX_DISC_WIDTH * 3))
 }
 
 function genLengthyString(sign: string, n: number) {
@@ -38,7 +41,7 @@ function printTowers() {
                     rowString += genLengthyString("-", MAX_DISC_WIDTH)
                 } else {
                     rowString += genLengthyString(" ", MAX_TOWER_HEIGHT)
-                    rowString += row == -2 ? i :  "|"
+                    rowString += row == -2 ? i : "|"
                     rowString += genLengthyString(" ", MAX_TOWER_HEIGHT)
                 }
 
@@ -50,9 +53,9 @@ function printTowers() {
 }
 
 async function move(from, to) {
-    console.log(genLengthyString("-", MAX_DISC_WIDTH * 3))
+    printFullLine()
     console.log(`|\t    MOVE: From ${from} To ${to}\t      |`)
-    console.log(genLengthyString("-", MAX_DISC_WIDTH * 3))
+    printFullLine()
     movingDisc = towers[from].pop()
     towers[to].push(movingDisc)
 }
@@ -71,6 +74,10 @@ function hanoi(n, from, helper, to) {
 }
 
 console.log('\n\nWELCOME TO TOWERS OF HANOI!\nSTARTING WITH:')
+printFullLine()
+console.log(`|      WELCOME TO TOWERS OF HANOI!    |`)
+printFullLine()
+
 genTower()
 hanoi(MAX_TOWER_HEIGHT, "A", "B", "C")
 printTowers()
