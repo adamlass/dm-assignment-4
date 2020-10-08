@@ -27,8 +27,7 @@ function printTowers() {
     for (let row = -2; row < MAX_TOWER_HEIGHT + 1; row++) {
         let rowString: string = ""
         for (let i in towers) {
-            const tower: Array<number> = towers[i]
-            const disc = tower[row]
+            const disc = towers[i][row]
             if (disc) {
                 const padding = Math.floor((MAX_DISC_WIDTH - disc) / 2)
                 rowString += genLengthyString(" ", padding)
@@ -39,11 +38,7 @@ function printTowers() {
                     rowString += genLengthyString("-", MAX_DISC_WIDTH)
                 } else {
                     rowString += genLengthyString(" ", MAX_TOWER_HEIGHT)
-                    if (row == -2) {
-                        rowString += i
-                    } else {
-                        rowString += "|"
-                    }
+                    rowString += row == -2 ? i :  "|"
                     rowString += genLengthyString(" ", MAX_TOWER_HEIGHT)
                 }
 
@@ -51,15 +46,13 @@ function printTowers() {
         }
         rowStrings.push(rowString)
     }
-    rowStrings.reverse().forEach(rowString => {
-        console.log(rowString)
-    })
-
-
+    rowStrings.reverse().forEach(rowString => console.log(rowString))
 }
 
 async function move(from, to) {
-    console.log(`Moving 1 disc from ${from} to ${to}`)
+    console.log(genLengthyString("-", MAX_DISC_WIDTH * 3))
+    console.log(`|\t    MOVE: From ${from} To ${to}\t      |`)
+    console.log(genLengthyString("-", MAX_DISC_WIDTH * 3))
     movingDisc = towers[from].pop()
     towers[to].push(movingDisc)
 }
